@@ -54,6 +54,10 @@ The easiest way to hack on braindump is with Vagrant
 6. Run `scripts/start-dev.sh` to start the application
 7. Go to localhost:5000 to view the app, any changes you make locally will be reflected in the Vagrant environment.
 
+## Making Database Changes 
+
+Braindump uses Flask SQLAlchemy as an ORM and Flask-Migrate to manage database migrations. 
+
 # Deploying to Production
 The only official method of deploying Braindump is with Docker. Braindump.pw is currently running on an Ubuntu 16.04 LTS server on [Linode](https://www.linode.com/?r=15437cfec0948d105bf7478af2422241ed5da188). You can view `scripts/deploy.sh` to see how braindump is currently being deployed to production via CircleCI.
 

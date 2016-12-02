@@ -2,6 +2,7 @@ import hashlib
 
 from app import login_manager, db
 from app.model.shared import SharedNote
+from app.model.tasks import Task
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import current_app, url_for, jsonify
 from flask_login import UserMixin, current_user, AnonymousUserMixin
@@ -56,6 +57,9 @@ class User(UserMixin, db.Model):
         lazy='dynamic', cascade="all, delete-orphan")
     shared_notes = db.relationship(
         'SharedNote', backref="author",
+        lazy="dynamic", cascade="all, delete-orphan")
+    tasks = db.relationship(
+        'Task', backref="author",
         lazy="dynamic", cascade="all, delete-orphan")
 
     def __init__(self, **kwargs):
@@ -223,6 +227,11 @@ class Note(db.Model):
         "Tag", secondary=note_tag,
         backref="Note", passive_deletes=True)
 
+    tasks = db.relationship(
+        "Task", backref="Note",
+        lazy="dynamic", cascade="all, delete-orphan"
+    )
+    
     # Full Text Search
     search_vector = db.Column(TSVectorType('title', 'body'))
 

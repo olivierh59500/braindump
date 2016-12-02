@@ -37,7 +37,7 @@ class DevelopmentConfig(Config):
             from app.models import User, Notebook
 
             db.init_app(app)
-            db.create_all()
+            # db.create_all()
 
             # Check if User Already Created
             u = User.query.filter_by(email='admin@example.com').first()
