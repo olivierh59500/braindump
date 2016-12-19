@@ -24,3 +24,6 @@ sqlalchemy_searchable==0.10.2
 gunicorn==19.6.0
 markdown==2.6.7
 python-slugify==1.2.1
+
+# Documentation
+Sphinx==1.5.1
