@@ -1,0 +1,6 @@
+# Python Development
+env/
+*.pyc
+
+# Sphinx
+docs/build
