@@ -39,6 +39,6 @@
         </div>
         `
         docsLocation.innerHTML += shortcutDocs;
-    })
+    });
 
 })(window);

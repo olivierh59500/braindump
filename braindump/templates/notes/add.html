@@ -5,7 +5,7 @@
 <form method="POST" action="{{ url_for('notes.add') }}">
     {{ form.csrf_token }}
 
-    {{ form.body(placeholder="Dump your brain! First line will be the title.") }}
+    {{ form.body(id="editor", placeholder="Dump your brain! First line will be the title.") }}
 
     {{ form.notebook }}
 
