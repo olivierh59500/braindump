@@ -1,0 +1,16 @@
+<ul class="noteList">
+{% for note in current_user.notes %}
+    <li>
+        <a href="#">{{ note.title }}</a>
+            {% if note.is_favorite %}
+            <span class="favorite" title="Favorite">!!</span>
+            {% endif %}
+        <br />
+        <span class="meta">
+        {{ note.created_date }}
+        <br />
+        in <a href="#">{{ note.notebook.title }}</a> notebook.
+        </span>
+    </li>
+{% endfor %}
+</ul>

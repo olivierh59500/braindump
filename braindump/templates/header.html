@@ -1,0 +1,23 @@
+<nav>
+    <ul>
+        <li>
+            <a href="{{ url_for('dashboard.index') }}">Home</a>
+        </li>
+        {% if current_user.is_authenticated %}
+        <li class="right">
+            <a href="/auth/logout">Log Out</a>
+        </li>
+        <li class="right">
+            <a href="{{ url_for('dashboard.settings') }}">Settings</a>
+        </li>
+        {% else %}
+        <li class="right">
+            <a href="{{ url_for('auth.register') }}">Sign Up</a>
+        </li>
+        <li class="right">
+            <a href="{{ url_for('auth.login') }}">Sign In</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+

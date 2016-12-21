@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> Add a New Note </h1>
+<form method="POST" action="{{ url_for('notes.add') }}">
+    {{ form.csrf_token }}
+
+    {{ form.body(placeholder="Dump your brain! First line will be the title.") }}
+
+    {{ form.notebook }}
+
+    {{ form.submit }}
+</form>
+{% endblock %}

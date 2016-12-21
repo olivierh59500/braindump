@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p> Welcome to braindump {{ current_user.email }} </p>
+
+<nav class="actions">
+    <ul>
+        <li>
+            <a id="addNoteButton" href="{{ url_for('notes.add') }}">Add Note</a>
+        </li>
+        <li>
+            <a href="{{ url_for('notes.add') }}">Add Notebook</a>
+        </li>
+        <li class="right">
+            <a href="{{ url_for('notes.add') }}">Trash</a>
+        </li>
+        <li class="right">
+            <a href="{{ url_for('notes.add') }}">Archive</a>
+        </li>
+        <li class="right">
+            <a href="{{ url_for('notes.add') }}">Favorites</a>
+        </li>
+    </ul>
+</nav>
+
+<hr />
+
+<div class="rightSidebar">
+    <div id="usageDocs">
+        <strong> Usage </strong>
+        <p> Click on a note to the left to view or edit. </p>
+        <p> Click on the <strong>bold</strong> notebook title under the note title
+            to see all notes in that notebook </p>
+    </div>
+    <div id="legend">
+        <strong> Icon Legend </strong>
+        <ul>
+            <li> <span class="favorite">!!</span> : Favorite Note </li>
+        </ul>
+    </div>
+    <div id="shortcutDocs"></div>
+</div>
+
+<h2> Your Notes </h2>
+{% include 'notes/_notes.html' %}
+
+{% endblock %}
