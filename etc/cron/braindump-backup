@@ -1,2 +1,0 @@
-SHELL=/bin/bash
-0 */6 * * * /var/www/braindump/scripts/pg_backup.sh

@@ -1,48 +1,19 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var cleanCSS = require('gulp-clean-css');
-var sass = require('gulp-sass');
+const elixir = require('laravel-elixir');
 
-var vendor = {
-  css: [
-    'node_modules/bootstrap/dist/css/bootstrap.min.css',
-    'node_modules/bootstrap-tagsinput/src/bootstrap-tagsinput.css',
-    'node_modules/font-awesome/css/font-awesome.min.css'
-  ]
-};
+require('laravel-elixir-vue-2');
 
-var dist = {
-  fonts: 'app/static/fonts/',
-  css: 'app/static/css/',
-  img: 'app/static/img/'
-};
+/*
+ |--------------------------------------------------------------------------
+ | Elixir Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Elixir provides a clean, fluent API for defining some basic Gulp tasks
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for your application as well as publishing vendor resources.
+ |
+ */
 
-gulp.task('vendor', function() {
-  gulp.src(vendor.css)
-    .pipe(concat('vendor.min.css'))
-    .pipe(gulp.dest(dist.css))
-  ;
-
-  gulp.src('node_modules/font-awesome/fonts/*')
-    .pipe(gulp.dest(dist.fonts))
-  ;
-
-  gulp.src('node_modules/bootstrap/dist/fonts/*')
-        .pipe(gulp.dest(dist.fonts))
-  ;
+elixir((mix) => {
+    mix.sass('app.scss')
+       .webpack('app.js');
 });
-
-gulp.task('sass', function () {
-  return gulp.src('./frontend/sass/**/*.scss')
-    .pipe(sass.sync().on('error', sass.logError))
-    .pipe(concat('app.min.css'))
-    .pipe(cleanCSS())
-    .pipe(gulp.dest(dist.css));
-});
-
-gulp.task('sass:watch', function () {
-  gulp.watch('./frontend/sass/*.scss', ['sass']);
-});
-
-gulp.task('default', ['vendor', 'sass:watch']);
