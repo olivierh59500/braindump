@@ -9,10 +9,10 @@
 
                 <div class="panel-body">
                     <a class="btn btn-small btn-default" href="/notebooks">
-                        Add Notebook
+                        Notebooks
                     </a>
                     <a class="btn btn-small btn-default" href="#">
-                        Add Note
+                        Notes
                     </a>
                 </div>
             </div>

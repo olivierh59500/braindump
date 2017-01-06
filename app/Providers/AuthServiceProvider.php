@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('edit-notebook', function($user, $notebook) {
+            return $user->id == $notebook->user_id;
+        });
     }
 }

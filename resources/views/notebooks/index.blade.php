@@ -12,15 +12,21 @@
                     <ul class="list-group">
                     @foreach ($notebooks as $notebook)
                     <li class="list-group-item">
+                    
                         {{ $notebook->title }}
+
+                        <a href="/notebooks/{{$notebook->id}}/delete" class="btn btn-danger btn-sm pull-right">Delete</a>
+
+                        <a href="/notebooks/{{$notebook->id}}/edit" class="btn btn-primary btn-sm pull-right">Edit</a>
+
                     </li>
                     @endforeach
                     </ul>
                     
                     <form method="POST" action="/notebooks">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        {{ csrf_field() }}
                         <div class="form-group">
-                            <input type="text" name="title" class="form-control" placeholder="Notebook Title"></input>
+                            <input type="text" name="title" class="form-control" placeholder="Notebook Title" required></input>
                         </div>
 
                         <div class="form-group">

@@ -4,6 +4,7 @@ namespace braindump\Http\Controllers;
 
 use braindump\Notebook;
 use Auth;
+use Gate;
 use Illuminate\Http\Request;
 
 class NotebooksController extends Controller
@@ -15,19 +16,9 @@ class NotebooksController extends Controller
      */
     public function index()
     {
-        $notebooks = Auth::user()->notebooks;
+        $notebooks = Auth::user()->notebooks->where('is_deleted', '!=', True);
 
         return view('notebooks.index', compact('notebooks'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -38,6 +29,11 @@ class NotebooksController extends Controller
      */
     public function store(Request $request, Notebook $notebook)
     {
+
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
         $notebook = new Notebook;
 
         $notebook->title = $request->title;
@@ -45,7 +41,7 @@ class NotebooksController extends Controller
 
         Auth::user()->notebooks()->save($notebook);
 
-        return Auth::user()->notebooks;
+        return back();
     }
 
     /**
@@ -65,9 +61,13 @@ class NotebooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Notebook $notebook)
     {
-        //
+        if (Gate::denies('edit-notebook', $notebook)) {
+            abort(403);
+        } else {
+            return view('notebooks.edit', compact('notebook'));
+        }
     }
 
     /**
@@ -77,9 +77,11 @@ class NotebooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Notebook $notebook)
     {
-        //
+        $notebook->update($request->all());
+
+        return redirect('notebooks');
     }
 
     /**
@@ -88,8 +90,11 @@ class NotebooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request, Notebook $notebook)
     {
-        //
+        $notebook->is_deleted = True;
+        $notebook->save();
+
+        return back();
     }
 }

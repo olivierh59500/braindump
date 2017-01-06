@@ -2,6 +2,7 @@
 
 namespace braindump;
 
+use braindump\Notebook;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -32,6 +33,6 @@ class User extends Authenticatable
      */
     public function notebooks()
     {
-        return $this->hasMany('braindump\Notebook');
+        return $this->hasMany(Notebook::class);
     }
 }

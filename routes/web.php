@@ -21,3 +21,6 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/notebooks', 'NotebooksController@index');
 Route::post('/notebooks', 'NotebooksController@store');
+Route::get('/notebooks/{notebook}/edit', 'NotebooksController@edit');
+Route::patch('/notebooks/{notebook}', 'NotebooksController@update');
+Route::get('/notebooks/{notebook}/delete', 'NotebooksController@delete');
