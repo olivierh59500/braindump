@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get notebooks for the user 
+     */
+    public function notebooks()
+    {
+        return $this->hasMany('braindump\Notebook');
+    }
 }

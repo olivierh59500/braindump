@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    <a class="btn btn-small btn-default" href="#">
+                    <a class="btn btn-small btn-default" href="/notebooks">
                         Add Notebook
                     </a>
                     <a class="btn btn-small btn-default" href="#">

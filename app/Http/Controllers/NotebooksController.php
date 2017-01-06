@@ -2,9 +2,11 @@
 
 namespace braindump\Http\Controllers;
 
+use braindump\Notebook;
+use Auth;
 use Illuminate\Http\Request;
 
-class NotebookController extends Controller
+class NotebooksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,9 @@ class NotebookController extends Controller
      */
     public function index()
     {
-        //
+        $notebooks = Auth::user()->notebooks;
+
+        return view('notebooks.index', compact('notebooks'));
     }
 
     /**
@@ -32,9 +36,16 @@ class NotebookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Notebook $notebook)
     {
-        //
+        $notebook = new Notebook;
+
+        $notebook->title = $request->title;
+        $notebook->user_id = Auth::user()->id;
+
+        Auth::user()->notebooks()->save($notebook);
+
+        return Auth::user()->notebooks;
     }
 
     /**
