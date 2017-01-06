@@ -8,7 +8,12 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <a class="btn btn-small btn-default" href="#">
+                        Add Notebook
+                    </a>
+                    <a class="btn btn-small btn-default" href="#">
+                        Add Note
+                    </a>
                 </div>
             </div>
         </div>
